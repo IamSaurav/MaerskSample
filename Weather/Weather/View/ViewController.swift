@@ -41,7 +41,11 @@ extension ViewController: UITableViewDataSource {
         }
         let weather = weathers[indexPath.row]
         cell.textLabel?.text = viewModel.weatherInfo?.name
-        cell.detailTextLabel?.text = "Humidity : " + viewModel.weatherInfo?.main?.humidity + "\n" + weather.weatherDescription
+        var description = "Weather: " + weather.weatherDescription!
+        if let humidity = viewModel.weatherInfo?.main?.humidity {
+            description += ", Humidity : " + String(humidity)
+        }
+        cell.detailTextLabel?.text = description
         return cell
     }
 }
